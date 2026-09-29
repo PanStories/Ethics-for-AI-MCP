@@ -3,7 +3,7 @@
   "name": "ethics-for-ai-mcp",
   "version": "1.0",
   "title": "Ethics for AI — MCP Server (daily ethics feed for agents)",
-  "description": "A remote MCP server that publishes a deterministic daily ethics feed for AI agents, drawn from a four-module curriculum (Humanity’s Goals, Core Principles, Case Studies, Code of Conduct). 10 read-only tools, 9 ethics:// resources, 1 reflection prompt. Zero upstream cost. Pay-per-event: only tools/call is metered.",
+  "description": "Remote MCP server publishing a deterministic daily ethics feed for AI agents from a four-module curriculum (Goals, Principles, Case Studies, Conduct). 10 read-only tools, 9 ethics:// resources, 1 prompt. Pay-per-event: only tools/call metered.",
   "main": "dist/http.js",
   "type": "module",
   "transforms": {
