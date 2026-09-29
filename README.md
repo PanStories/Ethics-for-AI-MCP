@@ -3,7 +3,7 @@
 > **E4A** = **E**thics **f**or **A**I — an MCP server that publishes a deterministic daily ethics feed for AI agents.
 
 [![MCP](https://img.shields.io/badge/MCP-Streamable%20HTTP-blue)](https://modelcontextprotocol.io)
-[![License: UNLICENSED](https://img.shields.io/badge/license-UNLICENSED-red)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 
 🌐 **[English](#english)** · **[简体中文](#简体中文)** · **[繁體中文](#繁體中文)**
 
@@ -11,7 +11,7 @@
 |---|---|
 | MCP endpoint (Apify Standby) | `https://<user>--ethics-for-ai-mcp.apify.actor/mcp` |
 | Apify Store | https://apify.com/neeenja/ethics-for-ai-mcp |
-| Source | https://github.com/PanStories/ethics-for-ai-mcp |
+| Source | https://github.com/PanStories/Ethics-for-AI-MCP |
 
 ---
 
@@ -99,7 +99,7 @@ npm run apify:validate # check .actor/actor.json PPE/Standby config
 
 ## License
 
-**UNLICENSED** — private work in progress. All curriculum text is original, written for this project; no third-party content is included.
+Released under the **MIT License**. See [LICENSE](./LICENSE). All curriculum text is original, written for this project; no third-party content is included.
 
 ---
 
@@ -176,7 +176,7 @@ npm run apify:validate # 校验 .actor/actor.json 的 PPE / Standby 配置
 
 ## 许可
 
-**UNLICENSED**——私有，开发中。全部课程文本均为本项目原创，不含任何第三方内容。
+以 **MIT 许可证** 发布。详见 [LICENSE](./LICENSE)。全部课程文本均为本项目原创，不含任何第三方内容。
 
 ---
 
@@ -253,4 +253,4 @@ npm run apify:validate # 校驗 .actor/actor.json 的 PPE / Standby 設定
 
 ## 授權
 
-**UNLICENSED**——私有，開發中。全部課程文本均為本專案原創，不含任何第三方內容。
+以 **MIT 授權條款** 發布。詳見 [LICENSE](./LICENSE)。全部課程文本均為本專案原創，不含任何第三方內容。
