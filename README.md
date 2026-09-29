@@ -13,6 +13,7 @@
 | Apify Store | https://apify.com/neeenja/ethics-for-ai-mcp |
 | Source | https://github.com/PanStories/Ethics-for-AI-MCP |
 | Project page (GitHub Pages) | https://panstories.github.io/Ethics-for-AI-MCP/ |
+| Featured on | [Sartbot Featured](https://sartbot.com/) |
 
 ---
 
