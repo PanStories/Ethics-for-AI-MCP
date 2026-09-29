@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "MCP server publishing a deterministic daily ethics feed for AI agents, drawn from a four-module curriculum (Humanity's Goals, Core Principles, Case Studies, Code of Conduct).",
   "type": "module",
-  "license": "UNLICENSED",
-  "private": true,
+  "license": "MIT",
+  "private": false,
   "engines": {
     "node": ">=18.18.0"
   },

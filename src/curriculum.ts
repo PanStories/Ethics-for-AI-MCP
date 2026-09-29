@@ -1,8 +1,8 @@
 /**
  * Curriculum data layer for ethics-for-ai-mcp.
  *
- * All text here is original, written for this project (UNLICENSED, private work
- * in progress). The server never generates ethics text at request time — it only
+ * All text here is original, written for this project (MIT-licensed, open source).
+ * The server never generates ethics text at request time — it only
  * reads from this static, versioned curriculum. That is the "human in the loop"
  * property: items enter the rotation only after review, by an editor, here.
  */

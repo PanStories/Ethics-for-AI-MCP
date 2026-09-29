@@ -398,7 +398,7 @@ function meta() {
     generatedAt: new Date().toISOString(),
     moduleCounts: { m1: 5, m2: 6, m3: 3, m4: 7 },
     properties: ['deterministic', 'complete', 'cacheable', 'human-in-the-loop'],
-    license: 'UNLICENSED — private work in progress',
+    license: 'MIT',
   };
 }
 
