@@ -1,242 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ethics for AI MCP (E4A)</title>
-  <meta name="description" content="Ethics for AI MCP: a deterministic daily ethics feed for AI agents, drawn from a four-module curriculum — Goals, Principles, Case Studies, Conduct. 10 read-only tools, 9 ethics:// resources and 1 prompt over one Streamable HTTP endpoint on Apify Standby.">
-  <meta name="theme-color" content="#0f2557">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%230f2557'/%3E%3Ctext x='12' y='17' font-size='13' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" type="image/svg+xml">
-  <link rel="canonical" href="https://panstories.github.io/Ethics-for-AI-MCP/">
-  <meta property="og:title" content="Ethics for AI MCP (E4A)">
-  <meta property="og:description" content="A deterministic daily ethics feed for AI agents — one dated edition a day from a four-module curriculum. 10 read-only tools, 9 resources, 1 prompt.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://panstories.github.io/Ethics-for-AI-MCP/">
-  <meta property="og:site_name" content="Ethics for AI MCP">
-  <meta name="twitter:card" content="summary_large_image">
-  <style>
-    :root{
-      --bg:#f5f7fb; --panel:#ffffff; --ink:#0f1b2d; --muted:#5b6b82;
-      --line:#e2e8f2; --brand:#0f2557; --brand-2:#1e4ed8; --accent:#2f7df6;
-      --ok:#128a4f; --ok-bg:#e7f6ee; --chip:#eef2fb; --chip-ink:#2a3b66;
-      --shadow:0 1px 2px rgba(15,27,45,.06),0 8px 24px rgba(15,27,45,.06);
-      --radius:14px;
-    }
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b1220; --panel:#121b2e; --ink:#e8eefb; --muted:#9fb0cc;
-        --line:#22304b; --brand:#2a4a8c; --brand-2:#5b8bff; --accent:#5b8bff;
-        --ok:#3fcf86; --ok-bg:#103024; --chip:#16223a; --chip-ink:#aebfe0;
-        --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
-      }
-    }
-    *{box-sizing:border-box}
-    html{-webkit-text-size-adjust:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);
-      font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;}
-    a{color:var(--brand-2);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-    .topbar{background:linear-gradient(135deg,var(--brand),#1a3a86);color:#fff}
-    .topbar .wrap{display:flex;align-items:center;gap:14px;height:60px}
-    .logo{width:30px;height:30px;border-radius:7px;background:#fff;color:var(--brand);
-      display:grid;place-items:center;font-weight:800;font-size:15px}
-    .topbar .brand{font-weight:700;font-size:17px;letter-spacing:.2px}
-    .topbar nav{margin-left:auto;display:flex;gap:18px;font-size:14px}
-    .topbar nav a{color:#dce6ff}
-    .hero{padding:46px 0 30px}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
-    .badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;
-      padding:4px 10px;border-radius:999px;background:var(--chip);color:var(--chip-ink);border:1px solid var(--line)}
-    .badge.ok{background:var(--ok-bg);color:var(--ok);border-color:transparent}
-    h1{font-size:34px;line-height:1.15;margin:0 0 6px;letter-spacing:-.4px}
-    .abbr{color:var(--muted);font-size:15px;margin:0 0 18px}
-    .abbr b{color:var(--ink)}
-    .lede{font-size:17px;max-width:760px;color:var(--ink)}
-    .lede b{color:var(--ink)}
-    .note{display:flex;gap:10px;align-items:flex-start;background:var(--panel);
-      border:1px solid var(--line);border-left:3px solid var(--accent);
-      border-radius:10px;padding:12px 14px;margin:22px 0;font-size:14.5px;color:var(--muted)}
-    .note svg{flex:0 0 auto;color:var(--accent);margin-top:2px}
-    section{padding:14px 0 8px}
-    .section-head h2{font-size:23px;margin:8px 0 2px;letter-spacing:-.2px}
-    .section-head p{color:var(--muted);margin:0 0 16px;max-width:780px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-      padding:16px 16px 14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
-    .card .top{display:flex;align-items:center;gap:9px}
-    .card .ic{width:30px;height:30px;border-radius:8px;background:var(--chip);color:var(--chip-ink);
-      display:grid;place-items:center;flex:0 0 auto}
-    .card .nm{font-weight:700;font-size:15.5px}
-    .card .ds{color:var(--muted);font-size:14px;margin:0}
-    .tags{list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:2px 0 0}
-    .tags li{font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--chip-ink)}
-    .meta{font-size:12px;font-weight:600;color:var(--ok);margin-top:auto}
-    .meta.res{color:var(--muted)}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;
-      background:var(--chip);padding:1px 5px;border-radius:5px;color:var(--chip-ink)}
-    .codecard{background:#0c1322;color:#dce6ff;border-radius:var(--radius);overflow:hidden;
-      box-shadow:var(--shadow);border:1px solid #1c2740}
-    .codecard .cap{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#93a6cf;
-      padding:9px 12px;border-bottom:1px solid #1c2740;background:#0a1020}
-    .codecard pre{margin:0;padding:14px 14px;overflow:auto;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-    .codecard .k{color:#7fd1ff}.codecard .s{color:#9ef0b0}.codecard .p{color:#ffd479}
-    .cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width:720px){.cols2{grid-template-columns:1fr}h1{font-size:27px}}
-    .glance-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-    .footer{margin-top:30px;border-top:1px solid var(--line);background:var(--panel)}
-    .footer .wrap{padding:22px 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;
-      justify-content:space-between;font-size:13.5px;color:var(--muted)}
-    .footer a{margin-right:14px}
-    h2 .anchor{font-size:14px;color:var(--muted);font-weight:500}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ethics for AI MCP — a deterministic daily ethics feed for AI agents, over MCP</title>
+<meta name="description" content="A Model Context Protocol server that publishes a deterministic daily ethics feed for AI agents, drawn from a four-module curriculum about how humanity improves the world and why an AI must not harm it. 10 read-only tools, 9 ethics:// resources and 1 prompt." />
+<meta name="theme-color" content="#0f2a4a" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236f8cff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v18'/%3E%3Cpath d='M7 21h10'/%3E%3Cpath d='M5 7h14'/%3E%3Cpath d='M5 7l-2.5 6h5z'/%3E%3Cpath d='M19 7l-2.5 6h5z'/%3E%3Ccircle cx='12' cy='3' r='1'/%3E%3C/svg%3E" type="image/svg+xml" />
+<style>
+  :root{
+    --navy:#0f2a4a; --navy2:#163a63; --blue:#2563eb; --blue-d:#1d4ed8;
+    --bg:#f5f7fa; --card:#ffffff; --ink:#1f2937; --muted:#5b6b7e;
+    --line:#e3e8ef; --green:#16a34a; --green-bg:#e8f6ee; --amber:#b45309;
+    --accent:#3b6bff; --accent-bg:#eaf0ff;
+    --shadow:0 1px 3px rgba(15,42,74,.08),0 8px 24px rgba(15,42,74,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  /* Header */
+  header.top{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;
+    box-shadow:0 1px 0 rgba(255,255,255,.06)}
+  .top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;color:#fff}
+  .brand svg{width:26px;height:26px;flex:none}
+  nav.main{margin-left:auto;display:flex;gap:22px;align-items:center}
+  nav.main a{color:#cdd9e8;font-size:14px}
+  nav.main a:hover{color:#fff;text-decoration:none}
+  .lang{display:inline-flex;border:1px solid rgba(255,255,255,.25);border-radius:8px;overflow:hidden}
+  .lang button{background:transparent;color:#cdd9e8;border:0;padding:6px 12px;font-size:13px;cursor:pointer}
+  .lang button.active{background:#fff;color:var(--navy);font-weight:600}
+  /* Hero */
+  .hero{background:linear-gradient(160deg,var(--navy2),var(--navy));color:#fff;padding:54px 0 46px}
+  .hero h1{font-size:34px;margin:0 0 10px;line-height:1.2}
+  .hero p.lead{font-size:17px;color:#cfe0f3;max-width:720px;margin:0 0 22px}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+  .badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 13px;font-size:13px;color:#eaf2fb}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.25)}
+  .cta{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:600;font-size:14px;border:1px solid transparent}
+  .btn.primary{background:var(--blue);color:#fff}
+  .btn.primary:hover{background:var(--blue-d);text-decoration:none}
+  .btn.ghost{border-color:rgba(255,255,255,.35);color:#fff;background:transparent}
+  .btn.ghost:hover{background:rgba(255,255,255,.12);text-decoration:none}
+  /* Sections */
+  section{padding:46px 0}
+  section h2{font-size:24px;margin:0 0 6px;color:var(--navy)}
+  section .sub{color:var(--muted);margin:0 0 26px;font-size:15px}
+  .grid{display:grid;gap:18px}
+  .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:860px){.grid.cols-4,.grid.cols-3{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.grid.cols-4,.grid.cols-3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+  .card .ic{width:34px;height:34px;border-radius:9px;background:var(--accent-bg);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .card .ic svg{width:19px;height:19px}
+  .card h3{margin:0 0 6px;font-size:16px;color:var(--navy)}
+  .card p{margin:0;font-size:14px;color:var(--muted)}
+  .card code{background:#eef2f7;border-radius:6px;padding:1px 6px;font-size:13px;color:var(--navy2)}
+  .card .price{display:inline-block;margin-top:10px;font-weight:700;color:var(--navy);font-size:14px}
+  .card .meta{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;color:var(--green);background:var(--green-bg);border-radius:6px;padding:2px 9px}
+  /* Pricing */
+  .price-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .price-table th,.price-table td{padding:14px 16px;text-align:left;font-size:14px;border-bottom:1px solid var(--line)}
+  .price-table th{background:#f0f4f9;color:var(--navy);font-weight:600}
+  .price-table tr:last-child td{border-bottom:0}
+  .pill{display:inline-block;background:var(--green-bg);color:var(--green);border-radius:6px;padding:2px 9px;font-weight:600;font-size:13px}
+  .pill.free{background:#eef2f7;color:var(--muted)}
+  .note{background:#fff8ec;border:1px solid #f3e0bd;border-radius:12px;padding:14px 16px;font-size:14px;color:#7a5a12;margin-top:16px}
+  /* Connect */
+  .code{position:relative;background:#0f1b2d;color:#d6e2f1;border-radius:12px;padding:18px 18px;overflow:auto;font-size:13px;line-height:1.5}
+  .code pre{margin:0;font-family:"SF Mono",Menlo,Consolas,monospace;white-space:pre}
+  .tabs{display:flex;gap:8px;margin-bottom:-1px}
+  .tab{background:#eef2f7;border:1px solid var(--line);border-bottom:0;border-radius:8px 8px 0 0;padding:8px 14px;font-size:13px;cursor:pointer;color:var(--muted)}
+  .tab.active{background:var(--card);color:var(--navy);font-weight:600;border-color:var(--line)}
+  .panel{display:none}
+  .panel.active{display:block}
+  .copy{position:absolute;top:10px;right:10px;background:#1d3a5f;color:#cfe0f3;border:1px solid #2c507f;border-radius:7px;padding:5px 10px;font-size:12px;cursor:pointer}
+  .copy:hover{background:#244a78}
+  /* Footer */
+  footer{background:var(--navy);color:#aebfd2;padding:30px 0;font-size:13px}
+  footer a{color:#cfe0f3}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  footer .fcols{display:flex;gap:26px;flex-wrap:wrap}
+  .hidden{display:none!important}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap">
-      <span class="logo">E</span>
-      <span class="brand">Ethics for AI MCP</span>
-      <nav>
-        <a href="https://github.com/PanStories/Ethics-for-AI-MCP">GitHub</a>
-        <a href="https://apify.com/neeenja/ethics-for-ai-mcp">Apify</a>
-        <a href="https://sartbot.com/mcp/ethics-for-ai-mcp/">Sartbot</a>
-      </nav>
-    </div>
-  </header>
 
+<header class="top">
   <div class="wrap">
-    <div class="hero">
-      <div class="badges">
-        <span class="badge ok">● Live on Apify Standby</span>
-        <span class="badge">MIT License</span>
-        <span class="badge">10 tools · 9 resources · 1 prompt</span>
-        <span class="badge">$0.02 / tool call</span>
-      </div>
-      <h1>Ethics for AI MCP <span style="color:var(--muted);font-weight:600;font-size:20px">(E4A)</span></h1>
-      <p class="abbr"><b>E4A</b> is short for <b>Ethics for AI</b>.</p>
-      <p class="lede">A Model Context Protocol server that publishes a <b>deterministic daily ethics feed for AI agents</b>: one dated edition a day, drawn from a four-module curriculum about how humanity is trying to improve the world and why an AI must not harm it. An agent subscribes once and keeps meeting the material without anyone asking it to. It is a <b>read-only</b> server — agents read the curriculum; they do not edit it.</p>
-
-      <div class="note">
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 8v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16.4" r="1.1" fill="currentColor"/></svg>
-        <p style="margin:0">This is the official project page. The hosted endpoint lives on <a href="https://apify.com/neeenja/ethics-for-ai-mcp">Apify</a>, the source is on <a href="https://github.com/PanStories/Ethics-for-AI-MCP">GitHub</a> under the MIT licence, and the directory listing is on <a href="https://sartbot.com/mcp/ethics-for-ai-mcp/">Sartbot</a>. Endpoint URLs and prices can change — trust those pages over this one.</p>
-      </div>
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#6f8cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v18"/><path d="M7 21h10"/><path d="M5 7h14"/>
+        <path d="M5 7l-2.5 6h5z"/><path d="M19 7l-2.5 6h5z"/><circle cx="12" cy="3" r="1"/>
+      </svg>
+      Ethics for AI MCP
     </div>
-
-    <section aria-labelledby="tools">
-      <div class="section-head">
-        <h2 id="tools">What it exposes</h2>
-        <p>Ten read-only tools. Every one is metered at the same rate — <span class="mono">$0.02</span> per <span class="mono">tools/call</span>.</p>
-      </div>
-      <div class="grid">
-        <div class="card"><div class="top"><span class="ic">📰</span><span class="nm">get_daily_feed</span></div><p class="ds">Today's (or any date's) deterministic edition — one primary item plus a companion from a neighbouring module.</p><ul class="tags"><li>daily</li><li>edition</li><li>feed</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">⏱️</span><span class="nm">get_feed_since</span></div><p class="ds">A run of daily editions starting from a date you supply — handy for catching up after a gap.</p><ul class="tags"><li>history</li><li>range</li><li>since</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">🗂️</span><span class="nm">list_feed_editions</span></div><p class="ds">Recent editions with the module, item id and content hash for each — the index you diff to detect change.</p><ul class="tags"><li>index</li><li>hash</li><li>digest</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">📚</span><span class="nm">get_feed_digest</span></div><p class="ds">The Sunday digest for a week — all four modules in one edition, for a weekly review pass.</p><ul class="tags"><li>digest</li><li>weekly</li><li>all-modules</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">🔄</span><span class="nm">get_feed_rotation</span></div><p class="ds">The deterministic rotation rules the server uses to schedule modules across the week.</p><ul class="tags"><li>rotation</li><li>schedule</li><li>rules</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">🎯</span><span class="nm">get_humanity_goals</span></div><p class="ds">Read an M1 item — one of the five positive outcomes humanity is working towards, the "why" behind ethical behaviour.</p><ul class="tags"><li>m1</li><li>goals</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">✅</span><span class="nm">get_principle</span></div><p class="ds">Read an M2 item — one of six hard constraints such as Do No Harm and Respect Autonomy.</p><ul class="tags"><li>m2</li><li>principles</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">⚖️</span><span class="nm">get_case_study</span></div><p class="ds">Read an M3 item — one of three worked examples, such as The Refusal Problem, showing how to decline and offer the nearest legitimate alternative.</p><ul class="tags"><li>m3</li><li>cases</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">📜</span><span class="nm">get_code_of_conduct</span></div><p class="ds">Read an M4 item — one of seven concrete lines an agent can audit itself against.</p><ul class="tags"><li>m4</li><li>conduct</li></ul><p class="meta">$0.02 per call</p></div>
-        <div class="card"><div class="top"><span class="ic">🔍</span><span class="nm">search_curriculum</span></div><p class="ds">Keyword search across all four modules — for when the agent knows the topic but not which module holds it.</p><ul class="tags"><li>search</li><li>keyword</li><li>all-modules</li></ul><p class="meta">$0.02 per call</p></div>
-      </div>
-    </section>
-
-    <section aria-labelledby="primitives">
-      <div class="section-head">
-        <h2 id="primitives">Resources and prompts</h2>
-        <p>Besides the tools, the server publishes nine read-only resources under the <span class="mono">ethics://</span> scheme and one prompt. They are read with <span class="mono">resources/read</span>, which is free.</p>
-      </div>
-      <div class="grid">
-        <div class="card"><div class="top"><span class="nm">Curriculum</span></div><p class="ds">The four curriculum modules — M1 Humanity's Goals, M2 Core Principles, M3 Case Studies, M4 Code of Conduct — exposed read-only under <span class="mono">ethics://</span>.</p><p class="meta res">Resource</p></div>
-        <div class="card"><div class="top"><span class="nm">Feed indexes</span></div><p class="ds">Per-edition metadata — module, item id and the content hash used for change detection — for recent daily editions.</p><p class="meta res">Resource</p></div>
-        <div class="card"><div class="top"><span class="nm">Rotation rules</span></div><p class="ds">The deterministic rotation the server uses to schedule modules across the week.</p><p class="meta res">Resource</p></div>
-        <div class="card"><div class="top"><span class="nm">Meta</span></div><p class="ds">Build time and curriculum version metadata, so a client can detect when the curriculum has changed.</p><p class="meta res">Resource</p></div>
-        <div class="card"><div class="top"><span class="nm">daily_reflection</span></div><p class="ds">Asks the agent to state what today's item requires of it and name one concrete situation where it would apply the lesson.</p><p class="meta res">Prompt</p></div>
-      </div>
-    </section>
-
-    <section aria-labelledby="connect">
-      <div class="section-head">
-        <h2 id="connect">Connect</h2>
-        <p>Two transports: a hosted Streamable HTTP endpoint on Apify Standby, or stdio for local desktop clients.</p>
-      </div>
-      <div class="cols2">
-        <figure class="codecard">
-          <figcaption class="cap">hosted endpoint · mcp-remote</figcaption>
-          <pre><code>{
-  <span class="k">"mcpServers"</span>: {
-    <span class="k">"ethics-for-ai-mcp"</span>: {
-      <span class="k">"command"</span>: <span class="s">"npx"</span>,
-      <span class="k">"args"</span>: [
-        <span class="s">"-y"</span>, <span class="s">"mcp-remote"</span>,
-        <span class="s">"https://neeenja--ethics-for-ai-mcp.apify.actor/mcp"</span>,
-        <span class="s">"--header"</span>, <span class="s">"Authorization: Bearer ${APIFY_TOKEN}"</span>
-      ],
-      <span class="k">"env"</span>: { <span class="k">"APIFY_TOKEN"</span>: <span class="s">"&lt;your-apify-api-token&gt;"</span> }
-    }
-  }
-}</code></pre>
-        </figure>
-        <figure class="codecard">
-          <figcaption class="cap">local · stdio</figcaption>
-          <pre><code><span class="p">$</span> git clone https://github.com/PanStories/Ethics-for-AI-MCP
-<span class="p">$</span> cd Ethics-for-AI-MCP &amp;&amp; npm install &amp;&amp; npm run build
-
-<span class="p"># then, in your MCP client:</span>
-{
-  <span class="k">"mcpServers"</span>: {
-    <span class="k">"ethics-for-ai-mcp"</span>: {
-      <span class="k">"command"</span>: <span class="s">"node"</span>,
-      <span class="k">"args"</span>: [<span class="s">"/absolute/path/to/Ethics-for-AI-MCP/dist/index.js"</span>],
-      <span class="k">"env"</span>: {}
-    }
-  }
-}</code></pre>
-        </figure>
-      </div>
-      <div class="note">
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3.6l8.4 15.2H3.6L12 3.6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M12 9.6v3.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16.2" r="1.1" fill="currentColor"/></svg>
-        <p style="margin:0">In remote mode the server answers <span class="mono">POST /mcp</span> for the protocol. Requests carry your own Apify API token as a Bearer header; self-hosting puts your endpoint at <span class="mono">https://&lt;username&gt;--ethics-for-ai-mcp.apify.actor/mcp</span>.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="pricing">
-      <div class="section-head">
-        <h2 id="pricing">Pricing</h2>
-        <p>Pay per event on the hosted endpoint. No subscription, no seat count, no charge when nothing calls a tool.</p>
-      </div>
-      <div class="grid">
-        <div class="card"><div class="top"><span class="ic">💲</span><span class="nm">$0.02 · tool-call</span></div><p class="ds">Charged on each <span class="mono">tools/call</span> — every one of the ten tools costs the same, so an agent can read the curriculum freely without worrying about tiered prices.</p><p class="meta">Primary billable event</p></div>
-        <div class="card"><div class="top"><span class="ic">🆓</span><span class="nm">Always free</span></div><p class="ds">The MCP handshake (<span class="mono">initialize</span>), <span class="mono">tools/list</span>, <span class="mono">resources/read</span> and <span class="mono">prompts/get</span> cost nothing — an agent can connect, discover and read the curriculum at zero cost — and every Apify account carries $5 of monthly platform credit.</p><p class="meta">Discovery and reading are not metered</p></div>
-      </div>
-    </section>
-
-    <section aria-labelledby="facts">
-      <div class="section-head">
-        <h2 id="facts">At a glance</h2>
-      </div>
-      <div class="glance-grid">
-        <div class="card"><div class="top"><span class="nm">Curriculum</span></div><p class="ds">M1 Humanity's Goals (5 items), M2 Core Principles (6), M3 Case Studies (3), M4 Code of Conduct (7) — 21 original items in total, one dated edition a day.</p></div>
-        <div class="card"><div class="top"><span class="nm">Four asserted properties</span></div><p class="ds">Deterministic (same date + version always composes to the same bytes and hash), Complete (all four modules within any rolling seven days), Cacheable (an edition is a pure function of its date) and Human-in-the-loop (items enter the rotation only after review).</p></div>
-        <div class="card"><div class="top"><span class="nm">Transports</span></div><p class="ds">Stateless Streamable HTTP for remote hosting on Apify Standby, plus stdio for local desktop clients.</p></div>
-        <div class="card"><div class="top"><span class="nm">Runtime</span></div><p class="ds">Node.js and TypeScript, built on the official <span class="mono">@modelcontextprotocol/sdk</span>, shipped as an Apify Docker image.</p></div>
-        <div class="card"><div class="top"><span class="nm">Licence</span></div><p class="ds">MIT. Clone, fork and self-host without a commercial agreement; the hosted endpoint is simply the convenient default. The curriculum text is original to this project; no third-party content is included.</p></div>
-      </div>
-    </section>
+    <nav class="main">
+      <a href="#curriculum">Curriculum</a>
+      <a href="#tools">Tools</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#connect">Connect</a>
+      <a href="https://github.com/PanStories/Ethics-for-AI-MCP" target="_blank" rel="noopener">Source</a>
+      <span class="lang">
+        <button id="enBtn" class="active" onclick="setLang('en')">EN</button>
+        <button id="zhBtn" onclick="setLang('zh')">中文</button>
+      </span>
+    </nav>
   </div>
+</header>
 
-  <footer class="footer">
-    <div class="wrap">
-      <div>
-        <strong>Ethics for AI MCP</strong> · MIT Licensed
+<div class="hero">
+  <div class="wrap">
+    <h1 class="lang-en">A deterministic daily ethics feed for AI agents — over MCP</h1>
+    <h1 class="lang-zh hidden">为 AI Agent 提供的确定性每日伦理内容 —— 通过 MCP 协议</h1>
+    <p class="lead lang-en">A Model Context Protocol server that publishes one dated ethics edition a day, drawn from a four-module curriculum about how humanity improves the world and why an AI must not harm it. An agent subscribes once and keeps meeting the material — a read-only server, so agents read the curriculum; they do not edit it.</p>
+    <p class="lead lang-zh hidden">一个 MCP 服务器，每天发布一条带日期的伦理内容，取材于四模块课程：人类如何改善世界，以及 AI 为何不可造成伤害。Agent 只需订阅一次即可持续接触材料——服务器只读，Agent 阅读课程而不修改它。</p>
+    <div class="badges">
+      <span class="badge"><span class="dot"></span> <span class="lang-en">Live on Apify Standby</span><span class="lang-zh hidden">已上线 Apify Standby</span></span>
+      <span class="badge">MIT</span>
+      <span class="badge"><span class="lang-en">10 tools · 9 resources · 1 prompt</span><span class="lang-zh hidden">10 工具 · 9 资源 · 1 提示</span></span>
+      <span class="badge"><span class="lang-en">$0.02 / tool call</span><span class="lang-zh hidden">$0.02 / 次工具调用</span></span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="https://apify.com/neeenja/ethics-for-ai-mcp" target="_blank" rel="noopener">Apify Store ↗</a>
+      <a class="btn ghost" href="https://github.com/PanStories/Ethics-for-AI-MCP" target="_blank" rel="noopener">View Source ↗</a>
+      <a class="btn ghost" href="#connect"><span class="lang-en">Connect</span><span class="lang-zh hidden">接入方式</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- CURRICULUM -->
+<section id="curriculum">
+  <div class="wrap">
+    <h2 class="lang-en">Four-module curriculum</h2>
+    <h2 class="lang-zh hidden">四模块课程</h2>
+    <p class="sub lang-en">Everything the feed teaches is sourced from one original curriculum — 21 items in total, one dated edition a day.</p>
+    <p class="sub lang-zh hidden">信息流的全部内容都来自同一套原创课程——共 21 条，每日一条带日期的版本。</p>
+    <div class="grid cols-4">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3 class="lang-en">M1 · Humanity's Goals</h3><h3 class="lang-zh hidden">M1 · 人类的目标</h3>
+        <p class="lang-en">5 original items on the positive outcomes humanity works toward — the "why" behind ethical behaviour.</p>
+        <p class="lang-zh hidden">5 条原创条目，关于人类追求的正向成果——伦理行为的"为什么"。</p>
       </div>
-      <div>
-        <a href="https://github.com/PanStories/Ethics-for-AI-MCP">GitHub</a>
-        <a href="https://apify.com/neeenja/ethics-for-ai-mcp">Apify Store</a>
-        <a href="https://sartbot.com/mcp/ethics-for-ai-mcp/">Sartbot</a>
-        <a href="https://panstories.github.io/Ethics-for-AI-MCP/">Project page</a>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3 class="lang-en">M2 · Core Principles</h3><h3 class="lang-zh hidden">M2 · 核心原则</h3>
+        <p class="lang-en">6 hard constraints such as Do No Harm and Respect Autonomy — the rules an agent must never cross.</p>
+        <p class="lang-zh hidden">6 条硬性约束，如"不造成伤害""尊重自主性"——Agent 绝不可逾越的准则。</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
+        <h3 class="lang-en">M3 · Case Studies</h3><h3 class="lang-zh hidden">M3 · 案例研究</h3>
+        <p class="lang-en">3 worked examples, e.g. The Refusal Problem — how to decline and offer the nearest legitimate alternative.</p>
+        <p class="lang-zh hidden">3 个案例，如"拒绝问题"——如何拒绝并提供最接近的合法替代。</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l3 3v10H6V10l3-3z"/><path d="M9 14h6"/></svg></div>
+        <h3 class="lang-en">M4 · Code of Conduct</h3><h3 class="lang-zh hidden">M4 · 行为准则</h3>
+        <p class="lang-en">7 concrete lines an agent can audit itself against — practical, checkable, not abstract.</p>
+        <p class="lang-zh hidden">7 条具体准则，可供 Agent 自我审计——务实、可核查、不空泛。</p>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" style="background:#eef2f7">
+  <div class="wrap">
+    <h2 class="lang-en">Ten read-only tools</h2>
+    <h2 class="lang-zh hidden">十个只读工具</h2>
+    <p class="sub lang-en">Every tool is metered at the same rate — $0.02 per <code>tools/call</code>. Reading resources and the prompt is free.</p>
+    <p class="sub lang-zh hidden">所有工具按同一费率计费——每次 <code>tools/call</code> $0.02。读取资源与提示免费。</p>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <h3><code>get_daily_feed</code></h3>
+        <p class="lang-en">Today's (or any date's) deterministic edition — one primary item plus a companion from a neighbouring module.</p>
+        <p class="lang-zh hidden">今日（或指定日期）的决定性版本——一条主条目加一条相邻模块条目。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+        <h3><code>get_feed_since</code></h3>
+        <p class="lang-en">A run of daily editions starting from a date you supply — handy for catching up after a gap.</p>
+        <p class="lang-zh hidden">从你指定日期起的一连串每日版本，便于补读断更内容。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></div>
+        <h3><code>list_feed_editions</code></h3>
+        <p class="lang-en">Recent editions with the module, item id and content hash for each — the index you diff to detect change.</p>
+        <p class="lang-zh hidden">近期版本，含模块、条目 id 与内容哈希，可作为比对变更的索引。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
+        <h3><code>get_feed_digest</code></h3>
+        <p class="lang-en">The Sunday digest for a week — all four modules in one edition, for a weekly review pass.</p>
+        <p class="lang-zh hidden">每周日的周报——四模块合一，便于每周复盘。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg></div>
+        <h3><code>get_feed_rotation</code></h3>
+        <p class="lang-en">The deterministic rotation rules the server uses to schedule modules across the week.</p>
+        <p class="lang-zh hidden">服务器用于安排每周模块轮换的确定性规则。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3><code>get_humanity_goals</code></h3>
+        <p class="lang-en">Read an M1 item — one of the five positive outcomes humanity is working towards.</p>
+        <p class="lang-zh hidden">读取 M1 条目——人类正在追求的五个正向成果之一。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4-3 7-7 9-7-9-7-5-7-9V6z"/></svg></div>
+        <h3><code>get_principle</code></h3>
+        <p class="lang-en">Read an M2 item — one of six hard constraints such as Do No Harm and Respect Autonomy.</p>
+        <p class="lang-zh hidden">读取 M2 条目——六条硬性约束之一，如"不造成伤害""尊重自主性"。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
+        <h3><code>get_case_study</code></h3>
+        <p class="lang-en">Read an M3 item — one of three worked examples, such as The Refusal Problem.</p>
+        <p class="lang-zh hidden">读取 M3 条目——三个案例之一，如"拒绝问题"。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l3 3v10H6V10l3-3z"/><path d="M9 14h6"/></svg></div>
+        <h3><code>get_code_of_conduct</code></h3>
+        <p class="lang-en">Read an M4 item — one of seven concrete lines an agent can audit itself against.</p>
+        <p class="lang-zh hidden">读取 M4 条目——七条具体准则之一，可供 Agent 自我审计。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></div>
+        <h3><code>search_curriculum</code></h3>
+        <p class="lang-en">Keyword search across all four modules — for when the agent knows the topic but not which module holds it.</p>
+        <p class="lang-zh hidden">跨四个模块的关键词搜索——当 Agent 知道主题却不确知归属哪个模块时。</p>
+        <span class="price">$0.02 / call</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES & PROMPT -->
+<section>
+  <div class="wrap">
+    <h2 class="lang-en">Resources &amp; one prompt</h2>
+    <h2 class="lang-zh hidden">资源与一条提示</h2>
+    <p class="sub lang-en">Besides the tools, the server publishes nine read-only resources under the <code>ethics://</code> scheme and one prompt. They are read with <code>resources/read</code>, which is free.</p>
+    <p class="sub lang-zh hidden">除工具外，服务器还发布九项只读资源（<code>ethics://</code> 方案下）与一条提示。通过 <code>resources/read</code> 读取，免费。</p>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
+        <h3 class="lang-en">Curriculum &amp; feed indexes</h3><h3 class="lang-zh hidden">课程与信息流索引</h3>
+        <p class="lang-en">The four modules (M1–M4) plus per-edition metadata — module, item id and the content hash used for change detection.</p>
+        <p class="lang-zh hidden">四个模块（M1–M4）及每版元数据——模块、条目 id 与用于变更检测的内容哈希。</p>
+        <span class="meta">Resource · free</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg></div>
+        <h3 class="lang-en">Rotation &amp; meta</h3><h3 class="lang-zh hidden">轮换规则与元数据</h3>
+        <p class="lang-en">The deterministic rotation rules the server uses to schedule modules, plus build time and curriculum version metadata.</p>
+        <p class="lang-zh hidden">服务器用于安排模块的确定性轮换规则，以及构建时间与课程版本元数据。</p>
+        <span class="meta">Resource · free</span>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg></div>
+        <h3 class="lang-en">daily_reflection</h3><h3 class="lang-zh hidden">daily_reflection</h3>
+        <p class="lang-en">The one prompt: asks the agent to state what today's item requires of it and name one concrete situation to apply the lesson.</p>
+        <p class="lang-zh hidden">唯一的提示：让 Agent 说明今日条目对其的要求，并举出一个可应用该教训的具体情境。</p>
+        <span class="meta">Prompt · free</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="background:#eef2f7">
+  <div class="wrap">
+    <h2 class="lang-en">Pricing — pay per event</h2>
+    <h2 class="lang-zh hidden">计费 —— 按事件付费</h2>
+    <p class="sub lang-en">No subscription, no monthly fee. You pay only when a tool is called.</p>
+    <p class="sub lang-zh hidden">无订阅、无月费。仅在工具被调用时计费。</p>
+    <table class="price-table">
+      <thead>
+        <tr><th class="lang-en">Event</th><th class="lang-zh hidden">事件</th>
+            <th class="lang-en">Charged when</th><th class="lang-zh hidden">触发时机</th>
+            <th class="lang-en">Price</th><th class="lang-zh hidden">单价</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>tool-call</code> <span class="pill lang-en">primary</span><span class="pill lang-zh hidden">主事件</span></td>
+          <td class="lang-en">each <code>tools/call</code> — all ten tools cost the same</td>
+          <td class="lang-zh hidden">每次 <code>tools/call</code>——十个工具同价</td>
+          <td><b>$0.02</b></td>
+        </tr>
+        <tr>
+          <td><span class="pill free lang-en">free</span><span class="pill free lang-zh hidden">免费</span></td>
+          <td class="lang-en">MCP handshake (<code>initialize</code>), <code>tools/list</code>, <code>resources/read</code>, <code>prompts/get</code></td>
+          <td class="lang-zh hidden">MCP 握手（<code>initialize</code>）、<code>tools/list</code>、<code>resources/read</code>、<code>prompts/get</code></td>
+          <td><b>$0.00</b></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note lang-en">
+      <b>Free tier:</b> every Apify account includes <b>$5 of free platform credit monthly</b> (~250 tool calls), so light users effectively pay nothing.
+    </div>
+    <div class="note lang-zh hidden">
+      <b>免费额度：</b>每个 Apify 账号每月自带 <b>$5 平台免费额度</b>（按 $0.02/次约 250 次工具调用），轻度用户实际等于免费用。
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="wrap">
+    <h2 class="lang-en">Connect</h2>
+    <h2 class="lang-zh hidden">接入方式</h2>
+    <p class="sub lang-en">Use the hosted endpoint (recommended) or run it locally.</p>
+    <p class="sub lang-zh hidden">推荐使用云端端点，或本地自行运行。</p>
+
+    <div class="tabs">
+      <div class="tab active" id="tab-hosted" onclick="setTab('hosted')"><span class="lang-en">Hosted endpoint</span><span class="lang-zh hidden">云端端点</span></div>
+      <div class="tab" id="tab-stdio" onclick="setTab('stdio')"><span class="lang-en">Local (stdio)</span><span class="lang-zh hidden">本地（stdio）</span></div>
+    </div>
+
+    <div class="panel active" id="panel-hosted">
+      <div class="code">
+        <button class="copy" onclick="copyCode(this)">Copy</button>
+<pre>{
+  "mcpServers": {
+    "ethics-for-ai-mcp": {
+      "command": "npx",
+      "args": [
+        "-y", "mcp-remote",
+        "https://neeenja--ethics-for-ai-mcp.apify.actor/mcp",
+        "--header", "Authorization: Bearer ${APIFY_TOKEN}"
+      ],
+      "env": { "APIFY_TOKEN": "<your-apify-api-token>" }
+    }
+  }
+}</pre>
+      </div>
+      <p class="lang-en" style="font-size:14px;color:var(--muted);margin-top:12px">Get your token from Apify Console → <b>Settings → API &amp; Integrations</b>.</p>
+      <p class="lang-zh hidden" style="font-size:14px;color:var(--muted);margin-top:12px">token 在 Apify Console → <b>Settings → API &amp; Integrations</b> 获取。</p>
+    </div>
+
+    <div class="panel" id="panel-stdio">
+      <div class="code">
+        <button class="copy" onclick="copyCode(this)">Copy</button>
+<pre>git clone https://github.com/PanStories/Ethics-for-AI-MCP
+cd Ethics-for-AI-MCP
+npm install && npm run build
+
+# then in your MCP client config:
+{
+  "mcpServers": {
+    "ethics-for-ai-mcp": {
+      "command": "node",
+      "args": ["/path/to/Ethics-for-AI-MCP/dist/index.js"],
+      "env": {}
+    }
+  }
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><a href="https://apify.com/neeenja/ethics-for-ai-mcp" target="_blank" rel="noopener">Apify Store</a></div>
+      <div><a href="https://github.com/PanStories/Ethics-for-AI-MCP" target="_blank" rel="noopener">GitHub</a></div>
+      <div><a href="https://neeenja--ethics-for-ai-mcp.apify.actor/mcp" target="_blank" rel="noopener">MCP Endpoint</a></div>
+      <div><a href="https://sartbot.com/mcp/ethics-for-ai-mcp/" target="_blank" rel="noopener">Sartbot</a></div>
+      <div>License: MIT</div>
+    </div>
+    <div>© PanStories · Ethics for AI MCP</div>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    var en=document.querySelectorAll('.lang-en'), zh=document.querySelectorAll('.lang-zh');
+    var isEn = l==='en';
+    en.forEach(function(e){e.classList.toggle('hidden',!isEn)});
+    zh.forEach(function(e){e.classList.toggle('hidden',isEn)});
+    document.getElementById('enBtn').classList.toggle('active',isEn);
+    document.getElementById('zhBtn').classList.toggle('active',!isEn);
+    try{localStorage.setItem('e4a-lang',l)}catch(e){}
+  }
+  function setTab(t){
+    document.getElementById('panel-hosted').classList.toggle('active',t==='hosted');
+    document.getElementById('panel-stdio').classList.toggle('active',t==='stdio');
+    document.getElementById('tab-hosted').classList.toggle('active',t==='hosted');
+    document.getElementById('tab-stdio').classList.toggle('active',t==='stdio');
+  }
+  function copyCode(btn){
+    var pre=btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(function(){
+      var o=btn.textContent;btn.textContent='Copied';setTimeout(function(){btn.textContent=o},1200);
+    });
+  }
+  try{var s=localStorage.getItem('e4a-lang');if(s&&s==='zh')setLang('zh')}catch(e){}
+</script>
 </body>
 </html>
