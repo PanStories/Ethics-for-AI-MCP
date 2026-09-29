@@ -1,0 +1,38 @@
+{
+  "actorSpecification": 1,
+  "name": "ethics-for-ai-mcp",
+  "version": "1.0",
+  "title": "Ethics for AI — MCP Server (daily ethics feed for agents)",
+  "description": "A remote MCP server that publishes a deterministic daily ethics feed for AI agents, drawn from a four-module curriculum (Humanity’s Goals, Core Principles, Case Studies, Code of Conduct). 10 read-only tools, 9 ethics:// resources, 1 reflection prompt. Zero upstream cost. Pay-per-event: only tools/call is metered.",
+  "main": "dist/http.js",
+  "type": "module",
+  "transforms": {
+    "source": "src/http.ts",
+    "bundle": false
+  },
+  "Dockerfile": ".actor/Dockerfile",
+  "usesStandbyMode": true,
+  "webServer": {
+    "requestHandler": "src/http.ts",
+    "type": "nodejs",
+    "port": 4321
+  },
+  "webServerMcpPath": "/mcp",
+  "pricingModel": "PAY_PER_EVENT",
+  "pricingEvents": {
+    "mcp-tool-call": {
+      "eventTitle": "MCP tools/call",
+      "eventPriceUsd": 0.02
+    },
+    "mcp-initialize": {
+      "eventTitle": "MCP initialize handshake",
+      "eventPriceUsd": 0
+    },
+    "mcp-list-tools": {
+      "eventTitle": "MCP list_tools discovery",
+      "eventPriceUsd": 0
+    }
+  },
+  "input": "./input_schema.json",
+  "output": "./output_schema.json"
+}

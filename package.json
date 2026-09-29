@@ -1,0 +1,57 @@
+{
+  "name": "ethics-for-ai-mcp",
+  "version": "1.0.0",
+  "description": "MCP server publishing a deterministic daily ethics feed for AI agents, drawn from a four-module curriculum (Humanity's Goals, Core Principles, Case Studies, Code of Conduct).",
+  "type": "module",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "main": "dist/index.js",
+  "bin": {
+    "ethics-for-ai-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    ".actor",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:http": "node dist/http.js",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "e2e": "npm run build && node e2e-test.mjs && node http-e2e-test.mjs",
+    "apify:validate": "node -e \"const a=require('./.actor/actor.json'); if(a.pricingModel!=='PAY_PER_EVENT') throw new Error('pricingModel must be PAY_PER_EVENT'); if(!a.usesStandbyMode) throw new Error('usesStandbyMode required for a stable public MCP endpoint'); if(!a.webServer?.requestHandler) throw new Error('webServer.requestHandler required'); console.log('✓ actor.json PPE/Standby config valid');\""
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.1",
+    "apify": "3.7.2",
+    "express": "5.2.1",
+    "proxy-agent": "^8.0.2",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.0",
+    "@types/node": "24.10.0",
+    "apify-cli": "^1.10.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "ethics",
+    "ai-safety",
+    "agent",
+    "daily-feed"
+  ],
+  "author": "PanStories",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PanStories/ethics-for-ai-mcp.git"
+  }
+}

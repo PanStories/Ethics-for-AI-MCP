@@ -1,0 +1,18 @@
+{
+  "title": "Ethics for AI — MCP Server",
+  "description": "Run the Ethics for AI MCP server. Connect any MCP client to the Actor’s /mcp endpoint. Tool calls are metered pay-per-event; no monthly fee. This server is read-only and takes no input.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "maxTotalChargeUsd": {
+      "type": "number",
+      "title": "Maximum total charge (USD)",
+      "description": "Hard cap on how much a run may charge. Recommended when letting an autonomous agent call the server. Example: 0.10 USD ≈ 5 tool calls.",
+      "minimum": 0,
+      "maximum": 1000,
+      "unit": "USD",
+      "editor": "hidden"
+    }
+  },
+  "additionalProperties": false
+}

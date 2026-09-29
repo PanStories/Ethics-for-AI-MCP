@@ -1,0 +1,18 @@
+{
+  "mcp-tool-call": {
+    "eventTitle": "MCP tools/call",
+    "eventDescription": "Charged once per tool invocation (the 10 read-only tools). initialize, tools/list, resources/read and prompts/get stay free so agents can connect and discover at zero cost.",
+    "eventPriceUsd": 0.02,
+    "isPrimaryEvent": true
+  },
+  "mcp-initialize": {
+    "eventTitle": "MCP initialize handshake",
+    "eventDescription": "Free. Agents can discover the server without cost.",
+    "eventPriceUsd": 0
+  },
+  "mcp-list-tools": {
+    "eventTitle": "MCP list_tools discovery",
+    "eventDescription": "Free. Tool discovery stays free so agents can inspect capabilities.",
+    "eventPriceUsd": 0
+  }
+}
