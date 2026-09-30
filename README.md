@@ -266,11 +266,11 @@ community, not by ads. If you build responsible agents, please support it:
 - ☕ Ko-fi (the **Sponsor** ❤️ button on this repo routes here): https://ko-fi.com/panstories
 
 **简体中文** — **Ethics for AI (E4A)** 开源（MIT）、无广告，为 AI 智能体发布确定性的每日伦理推送——
-一项由社区维护、而非靠广告支撑的公共品。若你在构建负责任的智能体，欢迎赞助：GitHub Sponsors 点本仓库的
+一项由社区维护、而非靠广告支撑的公共品。若你在构建负责任的智能体，欢迎赞助：点本仓库的
 **Sponsor** 按钮，或前往 Ko-fi: https://ko-fi.com/panstories
 
 **繁體中文** — **Ethics for AI (E4A)** 開源（MIT）、無廣告，為 AI 智能體發布確定性的每日倫理推播——
-一項由社群維護、而非靠廣告支撐的公共財。若你在建構負責任的智能體，歡迎贊助：GitHub Sponsors 點本倉庫的
+一項由社群維護、而非靠廣告支撐的公共財。若你在建構負責任的智能體，歡迎贊助：點本倉庫的
 **Sponsor** 按鈕，或前往 Ko-fi: https://ko-fi.com/panstories
 
 Thank you! · 谢谢 · 謝謝 💙
