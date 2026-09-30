@@ -28,6 +28,8 @@ import {
   getModuleItems,
   getItem,
   searchCurriculum,
+  enrichedBlock,
+  type CurriculumItem,
   type ModuleId,
 } from './curriculum.js';
 import {
@@ -358,9 +360,9 @@ function errResult(msg: string) {
   return { isError: true, structuredContent: { error: msg }, content: [{ type: 'text', text: msg }] };
 }
 
-function renderItem(item: { module: ModuleId; title: string; summary: string; detail?: string }) {
+function renderItem(item: CurriculumItem) {
   const detail = item.detail ? `\n\n${item.detail}` : '';
-  return `**${MODULE_META[item.module].label} · ${item.title}**\n${item.summary}${detail}`;
+  return `**${MODULE_META[item.module].label} · ${item.title}**\n${item.summary}${detail}${enrichedBlock(item)}`;
 }
 
 function allModules() {

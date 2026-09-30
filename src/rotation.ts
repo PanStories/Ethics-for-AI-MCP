@@ -20,6 +20,7 @@ import {
   M2_CORE_PRINCIPLES,
   M3_CASE_STUDIES,
   M4_CODE_OF_CONDUCT,
+  enrichedBlock,
   type CurriculumItem,
   type ModuleId,
 } from './curriculum.js';
@@ -120,7 +121,7 @@ function companionModuleFor(weekday: number): ModuleId {
 
 function renderItem(ei: EditionItem): string {
   const detail = ei.item.detail ? `\n\n${ei.item.detail}` : '';
-  return `### ${ei.label} · ${ei.item.title}\n${ei.item.summary}${detail}`;
+  return `### ${ei.label} · ${ei.item.title}\n${ei.item.summary}${detail}${enrichedBlock(ei.item)}`;
 }
 
 function composeText(date: string, weekday: number, primary: EditionItem | null, companion: EditionItem | null): string {
