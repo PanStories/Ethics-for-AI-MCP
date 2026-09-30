@@ -263,8 +263,7 @@ npm run apify:validate # 校驗 .actor/actor.json 的 PPE / Standby 設定
 **EN** — **Ethics for AI (E4A)** is open source (MIT), ad-free, and publishes a
 deterministic daily ethics feed for AI agents — a public good maintained by the
 community, not by ads. If you build responsible agents, please support it:
-- ❤️ GitHub Sponsors: click **Sponsor** on this repo (routes to PanStories / MistifyTea)
-- ☕ Ko-fi: https://ko-fi.com/panstories
+- ☕ Ko-fi (the **Sponsor** ❤️ button on this repo routes here): https://ko-fi.com/panstories
 
 **简体中文** — **Ethics for AI (E4A)** 开源（MIT）、无广告，为 AI 智能体发布确定性的每日伦理推送——
 一项由社区维护、而非靠广告支撑的公共品。若你在构建负责任的智能体，欢迎赞助：GitHub Sponsors 点本仓库的
