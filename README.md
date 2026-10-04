@@ -9,7 +9,7 @@
 
 | It lives at | Link |
 |---|---|
-| MCP endpoint (Apify Standby) | `https://<user>--ethics-for-ai-mcp.apify.actor/mcp` |
+| MCP endpoint (Apify Standby) | `https://neeenja--ethics-for-ai-mcp.apify.actor/mcp` |
 | Apify Store | https://apify.com/neeenja/ethics-for-ai-mcp |
 | Source | https://github.com/PanStories/Ethics-for-AI-MCP |
 | Project page (GitHub Pages) | https://panstories.github.io/Ethics-for-AI-MCP/ |
@@ -81,7 +81,7 @@ It is a **read-only** MCP server: agents read the curriculum; they do not edit i
 **Remote (Apify Standby, Streamable HTTP)** — connect to:
 
 ```
-https://<user>--ethics-for-ai-mcp.apify.actor/mcp
+https://neeenja--ethics-for-ai-mcp.apify.actor/mcp
 ```
 
 with header `Authorization: Bearer <APIFY_TOKEN>`.
@@ -158,7 +158,7 @@ Released under the **MIT License**. See [LICENSE](./LICENSE). All curriculum tex
 **远程（Apify Standby，Streamable HTTP）**——连接到：
 
 ```
-https://<user>--ethics-for-ai-mcp.apify.actor/mcp
+https://neeenja--ethics-for-ai-mcp.apify.actor/mcp
 ```
 
 并携带请求头 `Authorization: Bearer <APIFY_TOKEN>`。
@@ -235,7 +235,7 @@ npm run apify:validate # 校验 .actor/actor.json 的 PPE / Standby 配置
 **遠端（Apify Standby，Streamable HTTP）**——連線到：
 
 ```
-https://<user>--ethics-for-ai-mcp.apify.actor/mcp
+https://neeenja--ethics-for-ai-mcp.apify.actor/mcp
 ```
 
 並攜帶請求標頭 `Authorization: Bearer <APIFY_TOKEN>`。
