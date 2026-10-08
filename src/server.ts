@@ -44,16 +44,11 @@ import {
 // M8ven Trust Index / OpenAI MCP directory reject any tool missing the four explicit
 // boolean hints. Every tool here is a pure, read-only function of the static, versioned
 // curriculum, so the same read-only annotation set applies to all of them.
+//
+// NOTE: the hints are written INLINE on each tool, not via a shared const. M8ven's
+// static analyser does not follow `Const.prop` references and would otherwise report
+// every tool as missing its hints.
 const SERVER_NAME = 'ethics-for-ai-mcp';
-
-const TOOL_ANNOTATIONS = {
-  readOnly: {
-    readOnlyHint: true,
-    destructiveHint: false,
-    idempotentHint: true,
-    openWorldHint: false,
-  },
-} as const;
 
 // ────────────────────────────────────────────────────────────────────────────
 // Zod input schemas
@@ -99,13 +94,23 @@ export function createMcpServer() {
     tools: [
       {
         name: 'get_daily_feed',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'Today’s (or a given date’s) deterministic ethics edition: one primary item plus a companion from a neighbouring module.',
         inputSchema: { type: 'object', properties: { date: { type: 'string', description: 'YYYY-MM-DD, optional (defaults to today UTC).' } } },
       },
       {
         name: 'get_feed_since',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'Return a run of daily editions starting from a date, for N days. Each edition is a pure function of its date.',
         inputSchema: {
           type: 'object',
@@ -118,49 +123,89 @@ export function createMcpServer() {
       },
       {
         name: 'list_feed_editions',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'List recent editions with their primary module, item id, and content hash (for cache detection).',
         inputSchema: { type: 'object', properties: { days: { type: 'integer', minimum: 1, maximum: 60, default: 7 } } },
       },
       {
         name: 'get_feed_digest',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'The Sunday digest for the week containing a date: a summary of all four modules.',
         inputSchema: { type: 'object', properties: { date: { type: 'string', description: 'Any date in the week, optional.' } } },
       },
       {
         name: 'get_feed_rotation',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'Describe the deterministic rotation rules (which module leads each weekday).',
         inputSchema: { type: 'object', properties: {} },
       },
       {
         name: 'get_humanity_goals',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'Read an item from M1 — Humanity’s Goals (the “why” behind ethical behaviour).',
         inputSchema: { type: 'object', properties: { index: { type: 'integer', minimum: 0, description: 'Item index (0–4). Omit for the whole module.' } } },
       },
       {
         name: 'get_principle',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'Read an item from M2 — Core Principles (hard constraints such as Do No Harm).',
         inputSchema: { type: 'object', properties: { index: { type: 'integer', minimum: 0, description: 'Item index (0–5). Omit for the whole module.' } } },
       },
       {
         name: 'get_case_study',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'Read an item from M3 — Case Studies (worked examples such as The Refusal Problem).',
         inputSchema: { type: 'object', properties: { index: { type: 'integer', minimum: 0, description: 'Item index (0–2). Omit for the whole module.' } } },
       },
       {
         name: 'get_code_of_conduct',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'Read an item from M4 — Code of Conduct (lines an agent can audit itself against).',
         inputSchema: { type: 'object', properties: { index: { type: 'integer', minimum: 0, description: 'Item index (0–6). Omit for the whole module.' } } },
       },
       {
         name: 'search_curriculum',
-        annotations: TOOL_ANNOTATIONS.readOnly,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
         description: 'Search across all four modules by keyword (title, summary, detail).',
         inputSchema: { type: 'object', required: ['query'], properties: { query: { type: 'string', description: 'Free-text query.' } } },
       },
