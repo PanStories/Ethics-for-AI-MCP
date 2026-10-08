@@ -4,6 +4,7 @@
 
 [![MCP](https://img.shields.io/badge/MCP-Streamable%20HTTP-blue)](https://modelcontextprotocol.io)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
+[![M8ven Trust Index](https://m8ven.ai/badge/mcp/panstories/ethics-for-ai-mcp)](https://m8ven.ai/mcp/panstories/ethics-for-ai-mcp)
 
 **Current version: 1.0.1**
 
