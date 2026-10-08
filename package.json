@@ -1,6 +1,6 @@
 {
   "name": "ethics-for-ai-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server publishing a deterministic daily ethics feed for AI agents, drawn from a four-module curriculum (Humanity's Goals, Core Principles, Case Studies, Code of Conduct).",
   "type": "module",
   "license": "MIT",
