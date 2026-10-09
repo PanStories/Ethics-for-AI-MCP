@@ -106,6 +106,10 @@ npm run apify:validate # check .actor/actor.json PPE/Standby config
 
 Released under the **MIT License**. See [LICENSE](./LICENSE). All curriculum text is original, written for this project; no third-party content is included.
 
+## Privacy
+
+Read-only and stateless — no accounts, no cookies, no trackers, no third-party data calls, and no personal data collected. See [`PRIVACY.md`](./PRIVACY.md).
+
 ---
 
 <a id="简体中文"></a>
