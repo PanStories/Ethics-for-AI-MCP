@@ -1,0 +1,68 @@
+{
+  "slug": "ethics-for-ai-mcp",
+  "product": "Ethics for AI (E4A)",
+  "version": "1.0.0",
+  "curriculum_version": "1.0.1",
+  "repo_root": "..",
+  "github": "https://github.com/PanStories/Ethics-for-AI-MCP",
+  "github_pages": "https://panstories.github.io/Ethics-for-AI-MCP/",
+  "apifyStore": "https://apify.com/neeenja/ethics-for-ai-mcp",
+  "apifyActorId": null,
+  "sartbot": "https://sartbot.com/mcp/ethics-for-ai-mcp.html",
+  "visibility": "public",
+  "license": "MIT",
+  "endpoint": "https://neeenja--ethics-for-ai-mcp.apify.actor/mcp",
+  "endpoint_alive_check": "401 without Bearer (verified 2026-10-07)",
+  "tools": [
+    { "name": "get_daily_feed", "price": "0.02", "billable": true },
+    { "name": "get_feed_since", "price": "0.02", "billable": true },
+    { "name": "list_feed_editions", "price": "0.02", "billable": true },
+    { "name": "get_feed_digest", "price": "0.02", "billable": true },
+    { "name": "get_feed_rotation", "price": "0.02", "billable": true },
+    { "name": "get_humanity_goals", "price": "0.02", "billable": true },
+    { "name": "get_principle", "price": "0.02", "billable": true },
+    { "name": "get_case_study", "price": "0.02", "billable": true },
+    { "name": "get_code_of_conduct", "price": "0.02", "billable": true },
+    { "name": "search_curriculum", "price": "0.02", "billable": true }
+  ],
+  "free_events": ["initialize", "tools/list", "resources/read", "prompts/get"],
+  "pricing": {
+    "initialize_tools_list_resources_prompts": "free",
+    "any_tool_call": "$0.02 (Apify PPE, event: mcp-tool-call)",
+    "self_host": "free and unlimited (MIT) — but NO npm package published (registry 404), so no `npx -y ethics-for-ai-mcp`"
+  },
+  "tagline": {
+    "en": "daily ethics feed for AI agents",
+    "zh": "每日伦理推送",
+    "zh_hant": "每日倫理推播"
+  },
+  "install": {
+    "apify_streamable_http": "https://neeenja--ethics-for-ai-mcp.apify.actor/mcp",
+    "npx": "npx -y ethics-for-ai-mcp",
+    "npx_published": false,
+    "npm_registry": "404 — name is AVAILABLE (verified 2026-10-07)"
+  },
+  "channel_status": {
+    "apify_store": "200 live, isPublic=true, 8 runs / 0 charged events (2026-10-07)",
+    "sartbot_detail": "200 live, featured=true, verified=false, repo_url EMPTY, updated_at 2026-09-26 (stale)",
+    "github_pages": "200 live, no llms.txt (404)",
+    "lobehub": "auto-indexed from GitHub (EN/FR/VI locales seen) — free win, endpoint rendered as `https://--ethics-for-ai-mcp.apify.actor/mcp` (username stripped upstream)",
+    "glama": "glama.json present but author search returns 0 servers — NOT indexed",
+    "smithery": "404 — not listed",
+    "mcpservers_org": "404 — not listed",
+    "pulsemcp": "404 — not listed (Cloudflare 403 on search, page-level check only)",
+    "npm": "404 — never published",
+    "github_releases": "0 releases, 0 tags",
+    "github_stars": 0,
+    "github_issues": 0
+  },
+  "surfaces": [
+    { "id": "README", "path": "README.md",
+      "require": ["{version}", "{endpoint}", "{tagline.en}", "{tagline.zh}", "{tagline.zh_hant}", "{tools.all}", "{prices.all}"] },
+    { "id": "package json", "path": "package.json", "require": ["{version}"] },
+    { "id": "actor json", "path": ".actor/actor.json", "require": ["{tools.billable}", "{endpoint}"] },
+    { "id": "docs index", "path": "docs/index.html", "require": ["{endpoint}", "{tagline.en}"] },
+    { "id": "CHANGELOG", "path": "CHANGELOG.md", "require": ["{version}"] },
+    { "id": "llms txt", "path": "llms.txt", "require": ["{endpoint}", "{tagline.en}"] }
+  ]
+}

@@ -1,0 +1,48 @@
+# Ethics for AI MCP
+
+> E4A — an MCP server that publishes a deterministic daily ethics feed for AI agents.
+
+Ethics for AI MCP is a read-only Model Context Protocol server that pushes a dated edition
+of a four-module ethics curriculum to AI agents once a day. The same calendar date always
+composes to the same bytes and hash (deterministic, cacheable, complete within any rolling
+seven days). Agents subscribe once and keep meeting the material without anyone prompting them.
+
+It is built for agent builders who want their assistants to internalise humane values —
+Do No Harm, Respect Autonomy, Honesty & Transparency, Protect the Vulnerable, Preserve Human
+Dignity, Improve the World With Us — as a quiet background signal, rather than as a reactive
+guardrail that blocks specific prompts.
+
+## Key links
+- Source: https://github.com/PanStories/Ethics-for-AI-MCP
+- Apify Store: https://apify.com/neeenja/ethics-for-ai-mcp
+- Project page: https://panstories.github.io/Ethics-for-AI-MCP/
+- MCP endpoint (Apify Standby, Streamable HTTP): https://neeenja--ethics-for-ai-mcp.apify.actor/mcp
+- License: MIT
+
+## Tools (10, all read-only)
+- get_daily_feed — today's (or any date's) deterministic edition
+- get_feed_since — a run of daily editions starting from a date
+- list_feed_editions — recent editions with module, item id, and content hash
+- get_feed_digest — the Sunday digest for a week
+- get_feed_rotation — the deterministic rotation rules
+- get_humanity_goals — read an M1 item
+- get_principle — read an M2 item
+- get_case_study — read an M3 item
+- get_code_of_conduct — read an M4 item
+- search_curriculum — keyword search across all four modules
+
+## Resources (9, ethics:// scheme)
+Curriculum, feed indexes, rotation rules, and meta resources. Inspect with `resources/list`
+on the live server.
+
+## Prompt (1)
+- daily_reflection — asks the agent to state what today's item requires of it and name one
+  concrete situation where it would apply it.
+
+## Pricing
+Pay-per-event: only `tools/call` is metered at $0.02; `initialize`, `tools/list`,
+`resources/read`, and `prompts/get` are free. No monthly fee.
+
+## Docs
+- README.md — full three-language documentation (EN / 简体中文 / 繁體中文)
+- PRIVACY.md — read-only, stateless, no accounts, no tracking

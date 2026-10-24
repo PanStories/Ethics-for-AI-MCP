@@ -67,14 +67,14 @@ It is a **read-only** MCP server: agents read the curriculum; they do not edit i
 
 ## Connect
 
-**Local (stdio)** — add to your MCP client config:
+**Local (stdio)** — add to your MCP client config (after `git clone` + `npm install` + `npm run build`, point `args` at your clone's `dist/index.js`):
 
 ```json
 {
   "mcpServers": {
     "ethics-for-ai-mcp": {
       "command": "node",
-      "args": ["/absolute/path/to/ethics-for-ai-mcp/dist/index.js"],
+      "args": ["<REPO_ROOT>/dist/index.js"],
       "env": {}
     }
   }
@@ -148,14 +148,14 @@ Read-only and stateless — no accounts, no cookies, no trackers, no third-party
 
 ## 连接方式
 
-**本地（stdio）**——加入 MCP 客户端配置：
+**本地（stdio）**——加入 MCP 客户端配置（先 `git clone` + `npm install` + `npm run build`，再将 `args` 指向你本地 clone 的 `dist/index.js`）：
 
 ```json
 {
   "mcpServers": {
     "ethics-for-ai-mcp": {
       "command": "node",
-      "args": ["/absolute/path/to/ethics-for-ai-mcp/dist/index.js"],
+      "args": ["<REPO_ROOT>/dist/index.js"],
       "env": {}
     }
   }
@@ -225,14 +225,14 @@ npm run apify:validate # 校验 .actor/actor.json 的 PPE / Standby 配置
 
 ## 連線方式
 
-**本地（stdio）**——加入 MCP 客戶端設定：
+**本地（stdio）**——加入 MCP 客戶端設定（先 `git clone` + `npm install` + `npm run build`，再將 `args` 指向你本地 clone 的 `dist/index.js`）：
 
 ```json
 {
   "mcpServers": {
     "ethics-for-ai-mcp": {
       "command": "node",
-      "args": ["/absolute/path/to/ethics-for-ai-mcp/dist/index.js"],
+      "args": ["<REPO_ROOT>/dist/index.js"],
       "env": {}
     }
   }
