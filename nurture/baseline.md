@@ -96,3 +96,10 @@ topics：`ai-ethics, ai-safety, apify, ethics, mcp, model-context-protocol`（�
 - **M8ven:** ✅ **B2 RESOLVED** — live README now shows tokenized dash-slug (panstories-ethics-for-ai-mcp-ealkms?variant=verified), committed 2026-10-21 (27289a8). Corrects the stale "canonical slash / B2 NOT fixed" note above.
 - **Pricing:** no change (mcp-tool-call $0.02). Iron Law #4 honored.
 - GA4 (B5) / npm (B3) / dirs (B6) remain boss-gated.
+
+## 2026-10-30 (Fri) weekly-light refresh
+- **KPI (Apify totalRuns, live):** **10** (Δ 0 vs 2026-10-23). Flat.
+- **GitHub:** 0 stars / 0 open issues / 0 open PRs (public). Flat.
+- **M8ven:** B 89/100 · Verified Publisher; README badge tokenized (panstories-ethics-for-ai-mcp-ealkms?variant=verified) ✅ verified via live m8ven.ai curl.
+- **Pricing:** no change. Iron Law #4 honored.
+- Blockers: B5 awaiting boss GA4 SA drop; B6 CONFIRMED-LIVE 10-25.
