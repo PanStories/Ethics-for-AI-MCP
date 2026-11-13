@@ -1,18 +1,18 @@
 {
   "slug": "ethics-for-ai-mcp",
   "product": "Ethics for AI (E4A)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "curriculum_version": "1.0.1",
   "repo_root": "..",
   "github": "https://github.com/PanStories/Ethics-for-AI-MCP",
   "github_pages": "https://panstories.github.io/Ethics-for-AI-MCP/",
   "apifyStore": "https://apify.com/neeenja/ethics-for-ai-mcp",
-  "apifyActorId": null,
+  "apifyActorId": "pxVHDu2EyPtBFvdgq",
   "sartbot": "https://sartbot.com/mcp/ethics-for-ai-mcp.html",
   "visibility": "public",
   "license": "MIT",
   "endpoint": "https://neeenja--ethics-for-ai-mcp.apify.actor/mcp",
-  "endpoint_alive_check": "401 without Bearer (verified 2026-10-07)",
+  "endpoint_alive_check": "200 with Bearer, 10 tools / 9 resources / 1 prompt (verified 2026-11-13); 401 without Bearer = standby auth gate, NOT downtime",
   "tools": [
     { "name": "get_daily_feed", "price": "0.02", "billable": true },
     { "name": "get_feed_since", "price": "0.02", "billable": true },
@@ -40,12 +40,15 @@
     "apify_streamable_http": "https://neeenja--ethics-for-ai-mcp.apify.actor/mcp",
     "npx": "npx -y ethics-for-ai-mcp",
     "npx_published": false,
-    "npm_registry": "404 — name is AVAILABLE (verified 2026-10-07)"
+    "npm_registry": "404 — name is AVAILABLE (verified 2026-11-13)"
   },
   "channel_status": {
-    "apify_store": "200 live, isPublic=true, 8 runs / 0 charged events (2026-10-07)",
-    "sartbot_detail": "200 live, featured=true, verified=false, repo_url EMPTY, updated_at 2026-09-26 (stale)",
-    "github_pages": "200 live, no llms.txt (404)",
+    "apify_store": "200 live, isPublic=true, totalRuns=10 / 0 charged events / $0 revenue / lastRun 2026-10-09 (2026-11-13)",
+    "standby_endpoint": "200 OK with Bearer — 10 tools, 9 resources, 1 prompt (2026-11-13). 10-24 403 actor-disabled was the PREVIOUS billing cycle hitting the $5 cap; cycle 2026-10-25..11-24 reset automatically. NOT a plan upgrade.",
+    "sartbot_detail": "200 live; repo_url EMPTY, updated_at 2026-09-26 (stale) — boss-gated, needs canonical Sartbot source",
+    "github_pages": "200 live index.html; llms.txt was 404 (root-only file) -> fixed by byte-identical docs/llms.txt mirror 2026-11-13",
+    "official_mcp_registry": "LISTED io.github.PanStories/ethics-for-ai-mcp (verified 2026-11-13 via /v0.1/servers)",
+    "m8ven": "Grade B (Caution) · Verified Publisher · Live Monitored; tokenized badge live on main; page reports 'It answers 10 tools when run' (2026-11-13)",
     "lobehub": "auto-indexed from GitHub (EN/FR/VI locales seen) — free win, endpoint rendered as `https://--ethics-for-ai-mcp.apify.actor/mcp` (username stripped upstream)",
     "glama": "glama.json present but author search returns 0 servers — NOT indexed",
     "smithery": "404 — not listed",
@@ -54,15 +57,17 @@
     "npm": "404 — never published",
     "github_releases": "0 releases, 0 tags",
     "github_stars": 0,
-    "github_issues": 0
+    "github_issues": 0,
+    "github_topics": "ai-ethics, ai-safety, apify, ethics, mcp, model-context-protocol (still missing mcp-server — boss-gated, no GitHub token)"
   },
   "surfaces": [
     { "id": "README", "path": "README.md",
       "require": ["{version}", "{endpoint}", "{tagline.en}", "{tagline.zh}", "{tagline.zh_hant}", "{tools.all}", "{prices.all}"] },
     { "id": "package json", "path": "package.json", "require": ["{version}"] },
-    { "id": "actor json", "path": ".actor/actor.json", "require": ["{tools.billable}", "{endpoint}"] },
+    { "id": "actor json", "path": ".actor/actor.json", "require": ["{prices.all}", "mcp-tool-call", "PAY_PER_EVENT"] },
     { "id": "docs index", "path": "docs/index.html", "require": ["{endpoint}", "{tagline.en}"] },
     { "id": "CHANGELOG", "path": "CHANGELOG.md", "require": ["{version}"] },
-    { "id": "llms txt", "path": "llms.txt", "require": ["{endpoint}", "{tagline.en}"] }
+    { "id": "llms txt", "path": "llms.txt", "require": ["{endpoint}", "{tagline.en}"] },
+    { "id": "llms txt (pages)", "path": "docs/llms.txt", "require": ["{endpoint}", "{tagline.en}"] }
   ]
 }

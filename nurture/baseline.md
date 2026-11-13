@@ -103,3 +103,18 @@ topics：`ai-ethics, ai-safety, apify, ethics, mcp, model-context-protocol`（�
 - **M8ven:** B 89/100 · Verified Publisher; README badge tokenized (panstories-ethics-for-ai-mcp-ealkms?variant=verified) ✅ verified via live m8ven.ai curl.
 - **Pricing:** no change. Iron Law #4 honored.
 - Blockers: B5 awaiting boss GA4 SA drop; B6 CONFIRMED-LIVE 10-25.
+
+> ℹ️ 2026-11-13 复核：M8ven 页面已改版，`89/100` 数字分不再暴露，现显示为 `Grade B · Caution`；等级未变（仍 B）。见下节。
+
+## 2026-11-13 (Fri) weekly-light refresh
+
+- **🔴→🟢 BLOCKER CLEARED**: the 2026-10-24 `403 actor-disabled` was the **previous billing cycle** hitting the $5 Free-Plan cap. New cycle `2026-10-25 → 2026-11-24` reset automatically: `apify_credit_guard.py status` → Used **$0.2637 / $5.00**, remaining **$4.7363**, STATUS OK. **Boss's 2026-10-19 ruling (stay on Free Plan, do NOT upgrade) stands** — the 10-24 report's "add a payment method / upgrade" recommendation was wrong and is here corrected.
+- **Endpoint LIVE**: `initialize` + `tools/list` with Bearer → **200, 10 tools** (all four hints present), 9 resources, 1 prompt. Without Bearer still 401 = standby auth gate, **not** downtime.
+- **KPI flat**: totalRuns 10 / totalUsers 1 / 0 charged events / **$0** / lastRun 2026-10-09. Endpoint alive for 20 days with **zero organic calls** → the gap is distribution, not the product.
+- **GitHub**: 0 stars / 0 forks / 0 open issues; 6 topics (still missing `mcp-server`); no new commit since `3307d41` (10-24).
+- **M8ven**: Grade **B** (page revamped to `Grade B · Caution`; numeric 89/100 no longer exposed); Verified Publisher ✅; Live Monitored ✅; tokenized badge on `main` ✅. Page states *"It answers 10 tools when run"* → external monitor independently confirms the endpoint is back.
+- **Official MCP Registry**: **LISTED** `io.github.PanStories/ethics-for-ai-mcp` (verified via `/v0.1/servers`, 2026-11-13).
+- **trust_audit**: 0 fail / 1 warn / 16 pass (unchanged vs 10-24).
+- **preflight**: was 4/6 ❌ before this run (manifest `version` stuck at 1.0.0 + an impossible `actor json` rule) → corrected this run.
+- **Autonomous fixes (this run)**: manifest version→1.0.1 + stale facts refreshed; `docs/llms.txt` byte-identical mirror added (Pages serves `docs/`, root `llms.txt` was 404); preflight surface rule fixed to check real PPE fields; baseline + CHANGELOG appended.
+- **NOT touched** (boss-gated / Iron Law #4): pricing, npm publish, directory submissions, Sartbot `repo_url`, GitHub `mcp-server` topic.
